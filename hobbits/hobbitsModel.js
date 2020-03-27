@@ -9,7 +9,8 @@ module.exports = {
 };
 
 async function insert(hobbit) {
-  return null;
+  return db('hobbits')
+  .insert(hobbit)
 }
 
 async function update(id, changes) {
@@ -17,7 +18,9 @@ async function update(id, changes) {
 }
 
 function remove(id) {
-  return null;
+  return db('hobbits')
+  .where({ id })
+  .del()
 }
 
 function getAll() {
