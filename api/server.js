@@ -32,4 +32,20 @@ server.post("/hobbits", (req, res) => {
   })
 })
 
+server.delete('/hobbits/:id', (req, res) => {
+  const { id } = req.params;
+
+  Hobbits.remove(id)
+  .then(count => {
+    if (count){
+      res.status(200).json({count})
+    } else {
+      res.status(404).json({ message: 'Could not find the given hobbit' })
+    }
+  })
+  .catch(() => {
+    res.status(500).json({ message: 'Failed to delete hobbit' })
+  })
+})
+
 module.exports = server;
